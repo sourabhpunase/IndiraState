@@ -1,5 +1,5 @@
 import User from "../models/user.module.js";
-import { errorhandler } from "../utils/error.js"
+import { errorHandler } from "../utils/error.js"
 import bcryptjs from 'bcryptjs';
 
 
@@ -9,7 +9,7 @@ export const test=(req,res)=>{
     })
 };
 export const updateUser=async (req,res,next)=>{
-if(req.user.id!==req.params.id) return next(errorhandler(401," you can olny update your own account"));
+if(req.user.id!==req.params.id) return next(errorHandler(401," you can olny update your own account"));
 
 try{
     if(req.body.password){
@@ -34,7 +34,7 @@ next(error)
 
 }
 export const deleteUser= async(req,res,next)=> {
-    if(req.user.id!==req.params.id) return next(errorhandler(401," you can only delete your own account"));
+    if(req.user.id!==req.params.id) return next(errorHandler(401," you can only delete your own account"));
 
 try{
     await User.findByIdAndDelete(req.params.id,{new:true});

@@ -11,16 +11,14 @@ const navigate=useNavigate()
 const handleChange=(e)=>{
 
 setFormData({
-  ...formData,
-  [e.target.id]:e.target.value,
+  ...formData,[e.target.id]:e.target.value,
 })
 }
 const handleSubmit=async (e)=>{
   e.preventDefault();
 
   try{
-    setLoading(true);
-    
+    setLoading(true)
   const res=await fetch('/api/auth/signup'
 ,
 {
@@ -47,6 +45,7 @@ catch(error){
   setLoading(false)
   setError(error.message)
 }
+
 
 
 }

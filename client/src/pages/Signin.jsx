@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './signup.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link,useNavigate } from 'react-router-dom'
-import { signInStart,signInSucess,signInFailure } from '../redux/user/userSlice'
+import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice'
 import OAuth from '../components/OAuth'
 export default function SignIn() {
   const [formData,setFormData]=useState({})
@@ -39,7 +39,7 @@ const handleSubmit=async (e)=>{
  
     return ;
   }
-dispatch(signInSucess(data));
+dispatch(signInSuccess(data));
 
   navigate('/')
 }
@@ -47,7 +47,7 @@ catch(error){
 dispatch(signInFailure(error.message))
 }
 
-
+  console.log(data);
 
 }
 

@@ -25,7 +25,7 @@ app.listen(3000,()=>{
 })
 app.use('/api/user',userRouter);
 app.use('/api/auth',authrouter);
-app.use('api/listing',listingRouter);
+app.use('/api/listing',listingRouter);
 
 
 app.use((err,req,res,next)=>{
@@ -34,6 +34,6 @@ app.use((err,req,res,next)=>{
 return res.status(statusCode).json({
     success:false,
     statusCode,
-    message
+    message,
 })
 })
