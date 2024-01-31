@@ -1,9 +1,9 @@
 import Listing from "../models/listing.module.js";
 
-export const createListing=async ()=>{
+export const createListing=async (req,res,next)=>{
     try{
 const listing= await Listing.create(req.body);
-return resizeBy.status(201).json(listing);
+return res.status(201).json(listing);
 
 
     }
