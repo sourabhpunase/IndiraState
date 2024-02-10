@@ -144,7 +144,7 @@ export default function Listing() {
         <p className='text-center my-7 text-2xl'>Something went wrong!</p>
       )}
       {listing && !loading && !error && (
-        <div>
+        <div className='h-full w-full relative'>
           <Swiper navigation>
             {listing.imageUrls.map((url) => (
               <SwiperSlide key={url}>
@@ -152,7 +152,10 @@ export default function Listing() {
                   className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
-                    backgroundSize: 'cover',
+                    // backgroundSize: 'contain',
+                    objectFit:'cover',
+                    backgroundPosition:'center'
+                    
                   }}
                 ></div>
               </SwiperSlide>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {useNavigate} from 'react-router-dom';
+import ListingItem from '../components/ListingItem';
 
 export default function Search() {
 
@@ -16,6 +17,8 @@ const navigate = useNavigate();
   order:'desc'
 
 });
+const [loading,setLoading]=useState(false);
+const [listing,setListing]=useState([]);
 
 useEffect(() => {
   const urlParams = new URLSearchParams(location.search);
@@ -46,6 +49,18 @@ useEffect(() => {
       order: orderFromUrl || 'desc',
     });
   }
+
+const fetchListing=async()=>{
+setLoading(true);
+const searchQuery=urlParams.toString();
+const res= await fetch(`/api/listing/get?${searchQuery}`)
+const data= await res.json();
+setListing(data);
+setLoading(false);
+
+}
+fetchListing();
+
   },[location.search]
 )
  const handleChange=(e)=>{
@@ -195,10 +210,32 @@ onChange={handleChange}
 </form>
 
       </div>
-      <div className=''>
+      <div className='flex-1'>
 
-<h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Listing results</h1>
+<h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>Listing results:</h1>
 
+
+<div className='p-7 flex flex-wrap gap-4'>
+  {!loading&&listing.length===0&&(
+<p className='text-xl text-slate-700'>No Listing found!</p>
+
+  )}
+
+  {loading&&(
+<p className='text-xl text-slate-700 text-center w-full ' >Loading...</p>
+
+  )}
+
+  {
+!loading &&listing&&listing.map((listing)=>
+<ListingItem key={listing._id} listing={listing}/>
+)
+
+
+  }
+
+
+</div>
       </div>
 
         
