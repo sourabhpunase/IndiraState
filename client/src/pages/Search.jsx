@@ -20,6 +20,9 @@ const navigate = useNavigate();
 const [loading,setLoading]=useState(false);
 const [listing,setListing]=useState([]);
 
+const [showmore,setShowMore]=useState(false);
+
+
 useEffect(() => {
   const urlParams = new URLSearchParams(location.search);
   const searchTermFromUrl = urlParams.get('searchTerm');
@@ -52,9 +55,18 @@ useEffect(() => {
 
 const fetchListing=async()=>{
 setLoading(true);
+setShowMore(false)
 const searchQuery=urlParams.toString();
 const res= await fetch(`/api/listing/get?${searchQuery}`)
 const data= await res.json();
+
+if(data.length>8){
+  setShowMore(true);
+}
+else{
+  setShowMore(false);
+
+}
 setListing(data);
 setLoading(false);
 
@@ -102,6 +114,25 @@ if(e.target.id==='sort_order'){
 navigate(`/search?${searchQuery}`)
 
  }
+
+ const onShowClick=async()=>{
+  const numberOfListing=listing.length;
+const startindex=numberOfListing;
+
+  const urlParams= new URLSearchParams(location.search);
+  urlParams.set('startIndex',startindex);
+  const searchQuery=urlParams.toString();
+
+  const res= await fetch(`/api/listing/get?${searchQuery}`)
+const data= await res.json();
+
+if(data.length<9){
+  setShowMore(false);
+
+}
+setListing([...listing,...data])
+
+}
 
   return (
     <div className='flex flex-col md:flex-row'>
@@ -230,11 +261,16 @@ onChange={handleChange}
 !loading &&listing&&listing.map((listing)=>
 <ListingItem key={listing._id} listing={listing}/>
 )
+ }
+ 
 
+{showmore&&(
+<button onClick={()=>{
+  onShowClick();
+}} className='text-green-700 hover:underline p-7 text-center w-full'>Show more</button>
+ 
 
-  }
-
-
+)}
 </div>
       </div>
 
