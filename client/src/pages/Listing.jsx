@@ -153,7 +153,7 @@ export default function Listing() {
                   style={{
                     background: `url(${url}) center no-repeat`,
                     // backgroundSize: 'contain',
-                    objectFit:'cover',
+                    backgroundSize:'cover',
                     backgroundPosition:'center'
                     
                   }}
