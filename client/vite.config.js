@@ -13,4 +13,11 @@ export default defineConfig({
   },
 
   plugins: [react()],
+
+  build: {
+    rollupOptions: {
+      // Make sure to add 'react-icons/fa' to the external dependencies
+      external: ['react-icons/fa'],
+    },
+  },
 });
