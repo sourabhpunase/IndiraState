@@ -2,7 +2,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
-import {FaSignInAlt,FaSearch,FaAddressBook,FaHome} from 'react-icons/fa'
+// import {FaSignInAlt,FaSearch,FaAddressBook,FaHome} from 'react-icons/fa'
 
 
 export default function Header() {
@@ -56,24 +56,38 @@ className='bg-slate-100 p-3 rounded-lg flex items-center w-24 sm:w-64' >
 
 
 
-   <FaSearch className='text-slate-600' />
+   {/* <FaSearch className='text-slate-600' /> */}
    </button>
 </form>
 
 <ul className='flex gap-9'>
     <Link to='/'>
 
-<li className='hidden sm:inline text-zinc-950 hover:underline'><FaHome className='text-red-500 ml-3 sm:ml-1  mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/>Home</li>
+<li className='hidden sm:inline text-zinc-950 hover:underline'>
+  
+  
+  {/* <FaHome className='text-red-500 ml-3 sm:ml-1  mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/> */}
+
+Home</li>
 </Link>
 <Link to='/about'>
-<li  className=' text-zinc-950 hover:underline'><FaAddressBook className='text- ml-3 sm:ml-1 mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/>About</li>
+<li  className=' text-zinc-950 hover:underline'>
+  
+  {/* <FaAddressBook className='text- ml-3 sm:ml-1 mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/>
+   */}
+  
+  About</li>
 </Link>
 
 <Link to='/profile'>
 {currentUser?(
   <img className='rounded-full h-12 w-12 object-cover' src={currentUser.avatar} alt='profile'/>
 ):(
-  <li  className=' text-zinc-950 hover:underline' ><FaSignInAlt className='text-stone-500 ml-3 sm:ml-1 mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/>Sign in</li>
+  <li  className=' text-zinc-950 hover:underline' >
+    
+    {/* <FaSignInAlt className='text-stone-500 ml-3 sm:ml-1 mb-0 sm:mb-1 w-15 sm:w-8 h-8 sm:w-15 '/>
+     */}
+    Sign in</li>
   )}
 
 
