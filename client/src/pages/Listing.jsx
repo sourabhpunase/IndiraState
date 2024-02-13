@@ -152,8 +152,8 @@ export default function Listing() {
                   className='h-[550px]'
                   style={{
                     background: `url(${url}) center no-repeat`,
-                    // backgroundSize: 'contain',
-                    backgroundSize:'cover',
+                    backgroundSize: 'contain',
+                  
                     backgroundPosition:'center'
                     
                   }}
